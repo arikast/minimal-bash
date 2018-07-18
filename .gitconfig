@@ -1,0 +1,56 @@
+# also see http://jonas.nitro.dk/tig/ for fancy cmd line output
+[alias]
+	st = status
+	tst = status
+	co = checkout
+	tco = checkout
+	ci = commit
+	tci = commit
+	br = branch
+	tbr = branch
+	c  = commit -m'more' .
+	tc  = commit -m'more' .
+    l = log --graph --full-history --all --decorate --abbrev-commit --date=local --format=format:'%C(red)%h%C(reset) %C(dim white)%an %C(reset)%C(green)%ad %C(white)%s%C(reset) %C(yellow)%d%C(reset)'
+    tl = log --graph --full-history --all --decorate --abbrev-commit --date=local --format=format:'%C(red)%h%C(reset) %C(dim white)%an %C(reset)%C(green)%ad %C(white)%s%C(reset) %C(yellow)%d%C(reset)'
+    ll = log --graph --full-history --all --color --decorate --oneline
+    lll = log --graph --full-history --all --color --decorate 
+    llll = log --graph --full-history --all --color --decorate --stat
+    ma3 = log --graph --full-history --all --decorate --abbrev-commit --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+    ma4 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+    lg = !"git ma"
+
+    #to use:
+    #git checkout -b mynewbranch thestartnode 
+    #git reauthor thestartnode..theendnode
+    reauthor = !sh -c 'eval `git log --reverse --topo-order --pretty=format:\"git cherry-pick %H && git commit --amend -C %H --reset-author && \" $0 ` "echo success" '
+
+### note this feature requires git 2.13+
+#[includeIf "gitdir:~/projects/"]
+#    path = ~/.gitconfig-work
+[core]
+	#filemode = false
+	excludesfile = ~/.gitignore
+	editor = /usr/bin/vim
+    ignorecase = false
+[merge]
+    defaultToUpstream = true
+	tool = vimdiff
+[push]
+	default = upstream
+[diff]
+	tool = vimdiff
+[difftool "diffmerge"]
+	cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
+[mergetool "diffmerge"]
+	cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
+	trustExitCode = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+#[init]
+#	templatedir = ~/.git-templates
+[fetch]
+	prune = true

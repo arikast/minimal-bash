@@ -1,0 +1,75 @@
+function u()
+{
+    dir=""
+    if [ -z "$1" ]; then
+        dir=..
+    elif [[ $1 =~ ^[0-9]+$ ]]; then
+        x=0
+        while [ $x -lt ${1:-1} ]; do
+            dir=${dir}../
+            x=$(($x+1))
+        done
+    else
+        dir=${PWD%/$1/*}/$1
+    fi
+    cd "$dir";
+}
+
+function up()
+{
+    u $@;
+    ls;
+}
+
+_up()
+{
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    local d=${PWD//\//\ }
+    COMPREPLY=( $( compgen -W "$d" -- "$cur" ) )
+}
+complete -F _up u
+complete -F _up up
+
+# fully navigable fwd and back history
+function cd.history.clear {
+    export BACK_HISTORY=""
+    export FORWARD_HISTORY=""
+}
+cd.history.clear
+
+function cd {
+    #BACK_HISTORY=$PWD:$BACK_HISTORY
+    BACK_HISTORY=$PWD:"${BACK_HISTORY//$PWD:/}"
+    FORWARD_HISTORY=""
+    builtin cd "$@"
+}
+
+function cd.back {
+    DIR=${BACK_HISTORY%%:*}
+    if [[ -d "$DIR" ]]
+    then
+        BACK_HISTORY=${BACK_HISTORY#*:}
+        #FORWARD_HISTORY=$PWD:$FORWARD_HISTORY
+        FORWARD_HISTORY=$PWD:"${FORWARD_HISTORY//$PWD:/}"
+        builtin cd "$DIR"
+    fi
+}
+
+function cd.fwd {
+    DIR=${FORWARD_HISTORY%%:*}
+    if [[ -d "$DIR" ]]
+    then
+        FORWARD_HISTORY=${FORWARD_HISTORY#*:}
+        #BACK_HISTORY=$PWD:$BACK_HISTORY
+        BACK_HISTORY=$PWD:"${BACK_HISTORY//$PWD:/}"
+        builtin cd "$DIR"
+    fi
+}
+
+function cd.history {
+    local RED='\033[0;31m'
+    local NC='\033[0m' # No Color
+    echo -e "${BACK_HISTORY}${RED}<<<YOU ARE HERE>>>${NC}:${FORWARD_HISTORY}"
+}
+alias f=cd.fwd
+alias b=cd.back

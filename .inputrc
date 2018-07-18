@@ -1,0 +1,25 @@
+#to see more options, type: man Readline
+#to see currently used settings, type: bind -V
+set keymap vi
+set -o vi
+set editing-mode vi
+#prevent dot files from matching tab autocomplete
+#set match-hidden-files off
+set expand-tilde on
+set completion-ignore-case on
+
+#lets you type the beginning of a command and then up-arrow to previous invokations of it
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+#"\C-t": vim -p previous-history
+#"\C-t": fc -s a=a -1
+#"\C-t": "fc -ln -1"
+#"\C-t": "vim -p $(!!) \n history -d $((HISTCMD-1))"
+#"\C-t": "vim -p $(!! ) \n"
+"\C-w": "$(!! )"
+"\C-e": "vim -p $(!! )"
+"\C-g": "grep -rli '.*' * --include='*'"
+"\C-f": "find . -name '*.java' -exec echo {} \\;"
+"\C-l": '| while read line; do echo $line; done'
+"\C-p": "| perl -F'\\s+' -lane 'print $F[0]'"
