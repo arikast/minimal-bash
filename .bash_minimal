@@ -75,15 +75,3 @@ alias f=cd.fwd
 alias b=cd.back
 
 
-export PS1='\[\033[33m\]\w\[\033[37m\]\$ '
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-    #PROMPT_COMMAND='echo -ne "\033]0;${PWD/$HOME/~}\007"'
-    PROMPT_COMMAND='echo -ne "\033]0;`basename ${PWD}`\007"'
-    ;;
-*)
-    ;;
-esac
