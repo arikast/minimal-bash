@@ -93,6 +93,7 @@ alias mvn.web='mvn compile war:inplace'
 alias mvn.jpa='mvn openjpa:enhance'
 alias mvn.dependency.graph='mvn com.github.janssk1:maven-dependencygraph-plugin:1.0:graph'
 alias mvn.dependency.tree='mvn dependency:tree'
+alias gradle.skip='gradle build -x test'
 alias snv='svn'
 alias vi='vim -p'
 
