@@ -43,5 +43,7 @@ alias git.diff='git difftool -t opendiff -y'
 alias diff.visual='opendiff'
 alias tc='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
 
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
 complete -o default -o nospace -F _git g
 complete -o default -o nospace -F _git gti
