@@ -73,5 +73,27 @@ function cd.history {
 }
 alias f=cd.fwd
 alias b=cd.back
+alias l='ls'
+alias s='ls'
+alias ll='ls -l'
+alias sl='ls'
+alias gti='git'
+alias gi='git'
+alias giy='git'
+alias giyt='git'
+alias tree="ls -R | grep ":" | sed -e 's/://' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
+alias mvn.new='mvn archetype:generate -DgroupId=com.kastkode -DartifactId=myproj -DpackageName=com.kastkode -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false'
+alias mvn.web.new='mvn archetype:generate -DgroupId=com.kastkode -DartifactId=myproj -DpackageName=com.kastkode -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false'
+alias mvn.pack='mvn -Dmaven.test.skip=true package'
+alias mvn.dev="mvn -Dmaven.test.skip=true -Denvironment=dev"
+alias mvn.uat="mvn -Dmaven.test.skip=true -Denvironment=uat"
+alias mvn.skip='mvn -Dmaven.test.skip=true'
+alias mvn.test='mvn -Dsurefire.useFile=false test'
+alias mvn.web='mvn compile war:inplace'
+alias mvn.jpa='mvn openjpa:enhance'
+alias mvn.dependency.graph='mvn com.github.janssk1:maven-dependencygraph-plugin:1.0:graph'
+alias mvn.dependency.tree='mvn dependency:tree'
+alias snv='svn'
+alias vi='vim -p'
 
 
