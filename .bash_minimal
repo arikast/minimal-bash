@@ -39,62 +39,102 @@ cd.history.clear
 
 function cd {
     #BACK_HISTORY=$PWD:$BACK_HISTORY
-    BACK_HISTORY=$PWD:"${BACK_HISTORY//$PWD:/}"
+    BACK_HISTORY="${BACK_HISTORY//$PWD:/}:$PWD"
     FORWARD_HISTORY=""
     builtin cd "$@"
 }
 
+
 function cd.back {
-    DIR=${BACK_HISTORY%%:*}
-    if [[ -d "$DIR" ]]
-    then
-        BACK_HISTORY=${BACK_HISTORY#*:}
-        #FORWARD_HISTORY=$PWD:$FORWARD_HISTORY
-        FORWARD_HISTORY=$PWD:"${FORWARD_HISTORY//$PWD:/}"
-        builtin cd "$DIR"
+    local to="$1"
+
+    if [ -z "$to" ]; then
+        DIR=${BACK_HISTORY##*:}
+        if [[ -d "$DIR" ]]; then
+            BACK_HISTORY="${BACK_HISTORY%:*}"
+            #FORWARD_HISTORY=$PWD:$FORWARD_HISTORY
+            FORWARD_HISTORY="$PWD:${FORWARD_HISTORY//$PWD:/}"
+            builtin cd "$DIR"
+        fi
+    else
+        #FORWARD_HISTORY=":$PWD${FORWARD_HISTORY}${BACK_HISTORY%:$to*}"
+        FORWARD_HISTORY="$PWD:${BACK_HISTORY##*:$to:}${FORWARD_HISTORY}:"
+        BACK_HISTORY="${BACK_HISTORY%%:$to*}"
+        builtin cd "$to"
     fi
 }
 
 function cd.fwd {
-    DIR=${FORWARD_HISTORY%%:*}
-    if [[ -d "$DIR" ]]
-    then
-        FORWARD_HISTORY=${FORWARD_HISTORY#*:}
-        #BACK_HISTORY=$PWD:$BACK_HISTORY
-        BACK_HISTORY=$PWD:"${BACK_HISTORY//$PWD:/}"
-        builtin cd "$DIR"
+    local to="$1"
+    if [ -z "$to" ]; then
+        DIR=${FORWARD_HISTORY%%:*}
+        if [[ -d "$DIR" ]]; then
+            FORWARD_HISTORY=${FORWARD_HISTORY#*:}
+            #BACK_HISTORY=$PWD:$BACK_HISTORY
+            BACK_HISTORY="${BACK_HISTORY//$PWD:/}:$PWD"
+            builtin cd "$DIR"
+        fi
+    else
+        cd "$to"
     fi
 }
+
+_back()
+{
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    #local d=${BACK_HISTORY//\:/\ }
+    local d=${BACK_HISTORY}
+    local dd=""
+
+    local ORIG_IFS="$IFS"
+    IFS=":"
+    for choice in $d; do
+        if [[ "$choice" == *"$cur"* ]]; then
+            dd="$dd ${choice}"
+        fi
+    done
+    IFS="$ORIG_IFS"
+
+    COMPREPLY=( $( compgen -W "$dd" ) )
+}
+#complete -o filenames -F _back b
+complete -F _back b
+
+_fwd()
+{
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    #local d=${FORWARD_HISTORY//\:/\ }
+    local d=${FORWARD_HISTORY}
+    local dd=""
+
+    local ORIG_IFS="$IFS"
+    IFS=":"
+    for choice in $d; do
+        if [[ "$choice" == *"$cur"* ]]; then
+            dd="$dd ${choice}"
+        fi
+    done
+    IFS="$ORIG_IFS"
+
+    COMPREPLY=( $( compgen -W "$dd" ) )
+    #COMPREPLY=( $( compgen -W "$d" -- "$cur" ) )
+}
+#complete -o filenames -F _fwd f
+complete -F _fwd f
 
 function cd.history {
     local RED='\033[0;31m'
     local NC='\033[0m' # No Color
-    echo -e "${BACK_HISTORY}${RED}<<<YOU ARE HERE>>>${NC}:${FORWARD_HISTORY}"
+
+    #reverse BACK_HISTORY for more intuitive display
+#    BH=${BACK_HISTORY//\:/\ } 
+#
+#    local REV=""
+#    for h in $BH; do
+#       REV="$h:$REV"
+#    done
+
+    echo -e "${BACK_HISTORY}:${RED}<<<$PWD>>>${NC}${FORWARD_HISTORY}"
 }
 alias f=cd.fwd
 alias b=cd.back
-alias l='ls'
-alias s='ls'
-alias ll='ls -l'
-alias sl='ls'
-alias gti='git'
-alias gi='git'
-alias giy='git'
-alias giyt='git'
-alias tree="ls -R | grep ":" | sed -e 's/://' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
-alias mvn.new='mvn archetype:generate -DgroupId=com.kastkode -DartifactId=myproj -DpackageName=com.kastkode -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false'
-alias mvn.web.new='mvn archetype:generate -DgroupId=com.kastkode -DartifactId=myproj -DpackageName=com.kastkode -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false'
-alias mvn.pack='mvn -Dmaven.test.skip=true package'
-alias mvn.dev="mvn -Dmaven.test.skip=true -Denvironment=dev"
-alias mvn.uat="mvn -Dmaven.test.skip=true -Denvironment=uat"
-alias mvn.skip='mvn -Dmaven.test.skip=true'
-alias mvn.test='mvn -Dsurefire.useFile=false test'
-alias mvn.web='mvn compile war:inplace'
-alias mvn.jpa='mvn openjpa:enhance'
-alias mvn.dependency.graph='mvn com.github.janssk1:maven-dependencygraph-plugin:1.0:graph'
-alias mvn.dependency.tree='mvn dependency:tree'
-alias gradle.skip='gradle build -x test'
-alias snv='svn'
-alias vi='vim -p'
-
-
