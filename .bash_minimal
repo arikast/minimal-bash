@@ -140,3 +140,8 @@ alias f=cd.fwd
 alias b=cd.back
 alias vi='vim -p'
 alias gti='git'
+
+### note: standard cron unfortunately does not support Year field.  That last asterisk is NOT the year
+alias date.cron='date "+%-M %-H %-d %-m * echo hi"'
+alias date.cron.4minsfuture='date -v "+4M" "+%-M %-H %-d %-m *"'
+alias cron.now='date "+%-M %-H %-d %-m * echo hi"'
