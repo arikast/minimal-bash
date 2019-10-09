@@ -143,13 +143,13 @@ function checksums {
         return
     fi
     echo -n "md5: "
-    openssl md5 $1
+    openssl dgst -md5 $1
     echo -n "sha1: "
-    openssl sha1 $1
+    openssl dgst -sha $1
     echo -n "sha256: "
-    openssl sha -sha256 $1
+    openssl dgst -sha256 $1
     echo -n "sha512: "
-    openssl sha -sha512 $1
+    openssl dgst -sha512 $1
 }
 
 alias f=cd.fwd
