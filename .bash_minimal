@@ -145,7 +145,7 @@ function checksums {
     echo -n "md5: "
     openssl dgst -md5 $1
     echo -n "sha1: "
-    openssl dgst -sha $1
+    openssl dgst -sha1 $1
     echo -n "sha256: "
     openssl dgst -sha256 $1
     echo -n "sha512: "
