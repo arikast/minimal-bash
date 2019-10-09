@@ -136,6 +136,22 @@ function cd.history {
 
     echo -e "${BACK_HISTORY}:${RED}<<<$PWD>>>${NC}${FORWARD_HISTORY}"
 }
+
+function checksums {
+    if [ -z "$1" ]; then
+        echo "please specify a file to checksum"
+        return
+    fi
+    echo -n "md5: "
+    openssl md5 $1
+    echo -n "sha1: "
+    openssl sha1 $1
+    echo -n "sha256: "
+    openssl sha -sha256 $1
+    echo -n "sha512: "
+    openssl sha -sha512 $1
+}
+
 alias f=cd.fwd
 alias b=cd.back
 alias vi='vim -p'
