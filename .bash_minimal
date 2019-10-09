@@ -141,6 +141,7 @@ alias b=cd.back
 alias vi='vim -p'
 alias gti='git'
 alias curl.kL='curl -k -L'
+alias cd.lastargdir='cd $(dirname $_)'
 
 #complete -o default -o nospace -F _git g
 complete -o default -o nospace -F _git gti
