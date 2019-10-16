@@ -2,6 +2,7 @@
 
 # complete -o bashdefault -o default -C $INSTALL_DIR/minimal-bash/tripleDotFiles.rb mv
 # complete -o bashdefault -o default -C $INSTALL_DIR/minimal-bash/tripleDotFiles.rb cp 
+# complete -o bashdefault -o default -C $INSTALL_DIR/minimal-bash/tripleDotFiles.rb ls
 
 #puts ENV['COMP_TYPE']
 
