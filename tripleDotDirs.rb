@@ -31,13 +31,6 @@ Dir.pwd.sub(/^\//, '').split('/').reverse.each { |s|
     }
 }
 
+puts choiceResponse(choices)
 
-if choices.size <= 1 then
-    puts choices
-else
-    puts longestCommonPrefix(choices)
-end
-
-
-######### support funcs
 

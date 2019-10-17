@@ -1,7 +1,15 @@
 module CompletionUtils
 
 def longestCommonPrefix(choices)
-    puts "../../"
+    "../../"
+end
+
+def choiceResponse(choices)
+    if choices.size <= 1 then
+        choices.join "\n"
+    else
+        longestCommonPrefix(choices)
+    end
 end
 
 CompletionInput = Struct.new(:subject, :priorWord, :textSoFar, :line, :wordBreaks, :point, :kast) do 
