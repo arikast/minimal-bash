@@ -13,6 +13,11 @@ xterm*|rxvt*)
     ;;
 esac
 
+### dont forget to "brew install bash-completion" for this to work
+#if [ -f $(brew --prefix)/etc/bash_completion ]; then
+#    . $(brew --prefix)/etc/bash_completion
+#fi
+
 function removeFromPath() {
   export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
 }
@@ -21,6 +26,7 @@ function removeFromPath() {
 # setjdk (just sets JAVA_HOME to the default java) 
 # setjdk 1.7
 # setjdk 1.7.0_51
+# also consider using jenv instead
 function setjdk() {
   if [ $# -ne 0 ]; then
      removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
