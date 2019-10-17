@@ -1,38 +1,46 @@
 #!/usr/bin/env ruby
 
+require_relative 'lib/completion.rb'
+include CompletionUtils
+
 # complete -o bashdefault -o default -C $INSTALL_DIR/minimal-bash/tripleDotFiles.rb mv
 # complete -o bashdefault -o default -C $INSTALL_DIR/minimal-bash/tripleDotFiles.rb cp 
 # complete -o bashdefault -o default -C $INSTALL_DIR/minimal-bash/tripleDotFiles.rb ls
 
-#puts ENV['COMP_TYPE']
+syntax = ".../"
 
-## the command that triggered the completion
-subject = ARGV[0]
-priorword = ARGV[1]
-textsofar = ARGV[2]
-## entire line including subject
-line = ENV["COMP_LINE"]
-wordbreaks = ENV["COMP_WORDBREAKS"]
-## the length of line.  equivalent to line.length.to_s
-point = ENV["COMP_POINT"]
 
 #puts point == line.length.to_s
-levels = -1
+levels = 0 
 choices = []
+uniqFileNames = {} 
 
-if ! priorword.start_with?(".../") then
+input = CompletionInput.new
+
+if ! input.priorWord.start_with?(syntax) then
     puts ""
     exit
 else
-    priorword = priorword[".../".length, priorword.length]
+    input.priorWord = input.priorWord[".../".length, input.priorWord.length]
 end
 
 Dir.pwd.sub(/^\//, '').split('/').reverse.each { |s| 
     levels +=1 
     prefix = "../" * levels
-    choices.push(Dir["#{prefix}#{priorword}*"].map {|f| 
-        #f[prefix.length,-1]
-        f
-    })
+    Dir["#{prefix}#{input.priorWord}*"].each{|f| 
+        cf = chompParentPath(f)
+        if uniqFileNames[cf].nil? then
+            choices.push f
+            uniqFileNames[cf]=1
+        end
+    }
 }
-puts choices
+
+if choices.size <= 1 then
+    puts choices.join "\n"
+else
+    #puts longestCommonPrefix(choices)
+    puts choices.map{|c| subParentPath(c, syntax)}
+end
+
+

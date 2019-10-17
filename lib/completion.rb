@@ -31,6 +31,14 @@ def longestCommonPrefix(choices)
     return best
 end
 
+def chompParentPath(file)
+    subParentPath(file, "")
+end
+
+def subParentPath(file, replace)
+    file.sub /^(\.\.\/)*/, replace
+end
+
 CompletionInput = Struct.new(:subject, :priorWord, :textSoFar, :line, :wordBreaks, :point, :kast) do 
    def initialize()
         #puts ENV['COMP_TYPE']

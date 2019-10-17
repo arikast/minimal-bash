@@ -11,6 +11,7 @@ syntax = ".../"
 #puts point == line.length.to_s
 levels = 0 
 choices = []
+uniqFileNames = {} 
 
 input = CompletionInput.new
 
@@ -25,8 +26,10 @@ Dir.pwd.sub(/^\//, '').split('/').reverse.each { |s|
     levels +=1 
     prefix = "../" * levels
     Dir["#{prefix}#{input.priorWord}*"].each{|f| 
-        if File.directory? f then
+        cf = chompParentPath(f)
+        if uniqFileNames[cf].nil? and File.directory? f then
             choices.push f
+            uniqFileNames[cf]=1
         end
     }
 }
@@ -35,7 +38,6 @@ if choices.size <= 1 then
     puts choices.join "\n"
 else
     #puts longestCommonPrefix(choices)
-
-    puts choices.map{|c| c.sub /^(\.\.\/)*/, syntax}
+    puts choices.map{|c| subParentPath(c, syntax)}
 end
 
