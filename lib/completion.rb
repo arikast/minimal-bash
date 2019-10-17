@@ -1,15 +1,34 @@
 module CompletionUtils
 
-def longestCommonPrefix(choices)
-    "../../"
+def min(a, b)
+    if b < a then
+        b
+    else
+        a
+    end
 end
 
-def choiceResponse(choices)
-    if choices.size <= 1 then
-        choices.join "\n"
-    else
-        longestCommonPrefix(choices)
+def commonPrefix(a, b)
+    len = min(a.length, b.length)
+
+    0.upto(len - 1).each {|i|
+        if a[i] != b [i] then
+            return a[0..i]
+        end
+    }
+    return a[0..len]
+end
+
+def longestCommonPrefix(choices)
+    if choices.size == 1 then
+        return choices[0]
     end
+
+    best = choices[0] 
+    1.upto(choices.size() -1).each {|c|
+        best = commonPrefix(best, choices[c]) 
+    }
+    return best
 end
 
 CompletionInput = Struct.new(:subject, :priorWord, :textSoFar, :line, :wordBreaks, :point, :kast) do 

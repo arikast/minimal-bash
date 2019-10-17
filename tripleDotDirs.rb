@@ -31,6 +31,11 @@ Dir.pwd.sub(/^\//, '').split('/').reverse.each { |s|
     }
 }
 
-puts choiceResponse(choices)
+if choices.size <= 1 then
+    puts choices.join "\n"
+else
+    #puts longestCommonPrefix(choices)
 
+    puts choices.map{|c| c.sub /^(\.\.\/)*/, syntax}
+end
 
