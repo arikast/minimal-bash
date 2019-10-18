@@ -14,9 +14,7 @@ xterm*|rxvt*)
 esac
 
 ### dont forget to "brew install bash-completion" for this to work
-#if [ -f $(brew --prefix)/etc/bash_completion ]; then
-#    . $(brew --prefix)/etc/bash_completion
-#fi
+#[ -f $(brew --prefix)/etc/bash_completion ] && . $(brew --prefix)/etc/bash_completion
 
 function removeFromPath() {
   export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
