@@ -32,7 +32,7 @@ complete -F _up up
 
 BASH_MINIMAL_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P)"
 
-which ruby && {
+which ruby > /dev/null && {
     complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotDirs.rb cd
     complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb mv
     complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb cp
