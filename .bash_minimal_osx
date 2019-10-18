@@ -47,7 +47,6 @@ alias beep='say "beep. there, i said it. happy now?"'
 alias pwd.pbcopy="pwd -P | tr -d '\n' | pbcopy"
 alias git.diff='git difftool -t opendiff -y'
 alias diff.visual='opendiff'
-alias tc='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
 
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
