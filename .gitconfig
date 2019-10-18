@@ -1,3 +1,4 @@
+# preferable to cp rather than symlink this file into $HOME/ because this file tends to get personalized with user info which you don't want to commit back into this repo
 # also see http://jonas.nitro.dk/tig/ for fancy cmd line output
 [alias]
 	st = status
