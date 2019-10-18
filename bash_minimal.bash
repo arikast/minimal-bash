@@ -166,11 +166,13 @@ alias f=cd.fwd
 alias b=cd.back
 alias vi='vim -p'
 alias gti='git'
+alias gity='git'
 alias curl.kL='curl -k -L'
 alias cd.lastargdir='cd $(dirname $_)'
 
 #complete -o default -o nospace -F _git g
 complete -o default -o nospace -F _git gti
+complete -o default -o nospace -F _git gity
 
 ### note: standard cron unfortunately does not support Year field.  That last asterisk is NOT the year
 alias date.cron='date "+%-M %-H %-d %-m * echo hi"'
