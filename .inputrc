@@ -24,4 +24,4 @@ set completion-ignore-case on
 "\C-l": '| while read line; do echo $line; done'
 "\C-p": "| perl -F'\\s+' -lane 'print $F[0]'"
 ## convenience to commit with branch name prefixed onto cmt message.  handy if you name your branch after your current story
-"\C-n": 'git commit -m"$(git symbolic-ref --short HEAD) "'
+"\C-n": 'git commit -m"$(git symbolic-ref --short HEAD): "'
