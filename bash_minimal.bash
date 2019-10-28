@@ -38,6 +38,7 @@ which ruby > /dev/null && {
     complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb cp
     complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb ls
     complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb ln
+    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb vi
 }
 
 # fully navigable fwd and back history
