@@ -2,7 +2,8 @@
 
 BASH_MINIMAL_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P)"
 
-mkdir -p $HOME/.vim-tmp/{swap,undo,backup}
-mkdir -p $HOME/.vim/plugin
-ln -s $BASH_MINIMAL_DIR/.vimrc $HOME/.vimrc
-ln -s $BASH_MINIMAL_DIR/.vim/plugin/bash-minimal.vim $HOME/.vim/plugin/bash-minimal.vim
+#mkdir -p $HOME/.vim-tmp/{swap,undo,backup}
+#mkdir -p $HOME/.vim/plugin
+#ln -s $BASH_MINIMAL_DIR/.vimrc $HOME/.vimrc
+#ln -s $BASH_MINIMAL_DIR/.vim/plugin/bash-minimal.vim $HOME/.vim/plugin/
+ln -s $BASH_MINIMAL_DIR/.vim/plugin/easytabs.vim $HOME/.vim/plugin/
