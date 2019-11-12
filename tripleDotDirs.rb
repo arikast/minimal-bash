@@ -19,7 +19,7 @@ if ! input.priorWord.start_with?(syntax) then
     puts ""
     exit
 else
-    input.priorWord = input.priorWord[".../".length, input.priorWord.length]
+    input.priorWord = input.priorWord[syntax.length, input.priorWord.length]
 end
 
 Dir.pwd.sub(/^\//, '').split('/').reverse.each { |s| 
