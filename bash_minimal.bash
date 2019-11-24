@@ -1,3 +1,11 @@
+function convert.hexToDec() {
+    echo $((0x${1}))
+}
+
+function convert.decToHex() {
+    printf "%x\n" $1 
+}
+
 function u()
 {
     dir=""
