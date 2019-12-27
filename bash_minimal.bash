@@ -178,6 +178,7 @@ alias gti='git'
 alias gity='git'
 alias curl.kL='curl -k -L'
 alias cd.lastargdir='cd $(dirname $_)'
+alias grep.literal='grep -F'
 
 #complete -o default -o nospace -F _git g
 complete -o default -o nospace -F _git gti
