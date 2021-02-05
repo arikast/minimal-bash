@@ -18,7 +18,7 @@ set completion-ignore-case on
 #"\C-t": "vim -p $(!!) \n history -d $((HISTCMD-1))"
 #"\C-t": "vim -p $(!! ) \n"
 "\C-w": "$(!! )"
-"\C-e": "vim -p $(!! )"
+"\C-e": "code $(!! )"
 "\C-g": "grep -rli '.*' * --include='*'"
 "\C-f": "find . -name '*.java' -exec echo {} \\;"
 "\C-l": '| while read line; do echo $line; done'
