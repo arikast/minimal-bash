@@ -44,12 +44,13 @@ alias clip.diff.ls='sdiff -s <(pbpaste) <(ls)'
 alias beep='say "beep. there, i said it. happy now?"'
 alias pwd.pbcopy="pwd -P | tr -d '\n' | pbcopy"
 alias git.diff='git difftool -t opendiff -y'
-alias diff.visual='bcomp'
-
-function bcomp() {
-    local bcomptool='/Applications/Beyond Compare.app/Contents/MacOS/bcomp'
-    "$bcomptool" $@
-}
+#alias diff.visual='bcomp'
+#
+# not needed, instead open Beyond Compare and choose Install Command Line Tools...
+#function bcomp() {
+#    local bcomptool='/Applications/Beyond Compare.app/Contents/MacOS/bcomp'
+#    "$bcomptool" $@
+#}
 
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
