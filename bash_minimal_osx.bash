@@ -53,6 +53,7 @@ git config --global mergetool.bc3.trustExitCode true
 #alias diff.visual='bcomp'
 #
 # not needed, instead open Beyond Compare and choose Install Command Line Tools...
+# which installs /usr/local/bin/bcomp
 #function bcomp() {
 #    local bcomptool='/Applications/Beyond Compare.app/Contents/MacOS/bcomp'
 #    "$bcomptool" $@
