@@ -43,7 +43,13 @@ alias clip.diff='sdiff -s <(pbpaste)'
 alias clip.diff.ls='sdiff -s <(pbpaste) <(ls)'
 alias beep='say "beep. there, i said it. happy now?"'
 alias pwd.pbcopy="pwd -P | tr -d '\n' | pbcopy"
-alias git.diff='git difftool -t opendiff -y'
+alias git.diff.visual='git difftool'
+alias git.merge.visual='git mergetool'
+
+git config --global diff.tool bc3
+git config --global merge.tool bc3
+git config --global mergetool.bc3.trustExitCode true
+
 #alias diff.visual='bcomp'
 #
 # not needed, instead open Beyond Compare and choose Install Command Line Tools...
