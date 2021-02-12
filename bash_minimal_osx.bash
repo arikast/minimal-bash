@@ -50,7 +50,8 @@ git config --global diff.tool bc3
 git config --global merge.tool bc3
 git config --global mergetool.bc3.trustExitCode true
 
-#alias diff.visual='bcomp'
+alias diff.visual='bcomp'
+alias vdiff='bcomp'
 #
 # not needed, instead open Beyond Compare and choose Install Command Line Tools...
 # which installs /usr/local/bin/bcomp
