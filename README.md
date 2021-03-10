@@ -6,7 +6,6 @@ To use:
 2. source the scripts in your $HOME/.bash_profile or $HOME/.bashrc:
 `
 echo '. /where/ever/you/cloned/minimal-bash/.bash_minimal' >> $HOME/.bash_profile
-` 
 
 ### quick guide to completion commands provided here
 
