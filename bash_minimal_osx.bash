@@ -35,6 +35,7 @@ function setjdk() {
      export PATH=$JAVA_HOME/bin:$PATH
   else
      export JAVA_HOME=$(/usr/libexec/java_home)
+     ls /Library/Java/JavaVirtualMachines
   fi
 }
 
