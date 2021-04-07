@@ -35,6 +35,7 @@ function setjdk() {
      export PATH=$JAVA_HOME/bin:$PATH
   else
      export JAVA_HOME=$(/usr/libexec/java_home)
+     ls /Library/Java/JavaVirtualMachines
   fi
 }
 
@@ -43,8 +44,23 @@ alias clip.diff='sdiff -s <(pbpaste)'
 alias clip.diff.ls='sdiff -s <(pbpaste) <(ls)'
 alias beep='say "beep. there, i said it. happy now?"'
 alias pwd.pbcopy="pwd -P | tr -d '\n' | pbcopy"
-alias git.diff='git difftool -t opendiff -y'
-alias diff.visual='opendiff'
+### note for this to work in Beyond Compare, in BC click Rules toolbar button (referee icon) > Handling tab > Follow symbolic links
+alias git.diff.visual='git difftool -d'
+alias git.merge.visual='git mergetool'
+
+git config --global diff.tool bc3
+git config --global merge.tool bc3
+git config --global mergetool.bc3.trustExitCode true
+
+alias diff.visual='bcomp'
+alias vdiff='bcomp'
+#
+# not needed, instead open Beyond Compare and choose Install Command Line Tools...
+# which installs /usr/local/bin/bcomp
+#function bcomp() {
+#    local bcomptool='/Applications/Beyond Compare.app/Contents/MacOS/bcomp'
+#    "$bcomptool" $@
+#}
 
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
