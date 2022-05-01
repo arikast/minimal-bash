@@ -110,9 +110,9 @@ vnoremap ie iwh
 "nnoremap ,p "0p
 "xnoremap ,p "0p
 
-"save you from having to use gj and gk to navigate when line wraps
-nnoremap k gk 
-nnoremap j gj
+"save you from having to use gj and gk to navigate when line wraps (nice idea but doesnt quite work)
+"nnoremap k gk 
+"nnoremap j gj
 
 "vim minimal stuff should run here
 
