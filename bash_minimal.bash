@@ -190,3 +190,6 @@ complete -o default -o nospace -F _git gity
 alias date.cron='date "+%-M %-H %-d %-m * echo hi"'
 alias date.cron.4minsfuture='date -v "+4M" "+%-M %-H %-d %-m *"'
 alias cron.now='date "+%-M %-H %-d %-m * echo hi"'
+
+#fix that horrible purple default on linux
+export LS_COLORS='di=01;33'
