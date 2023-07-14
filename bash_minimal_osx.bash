@@ -44,6 +44,7 @@ alias clip.diff='sdiff -s <(pbpaste)'
 alias clip.diff.ls='sdiff -s <(pbpaste) <(ls)'
 alias beep='say "beep. there, i said it. happy now?"'
 alias pwd.pbcopy="pwd -P | tr -d '\n' | pbcopy"
+alias format.clipboard.clear='pbpaste | pbcopy'
 ### note for this to work in Beyond Compare, in BC click Rules toolbar button (referee icon) > Handling tab > Follow symbolic links
 alias git.diff.visual='git difftool -d'
 alias git.merge.visual='git mergetool'
