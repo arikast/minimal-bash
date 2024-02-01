@@ -40,14 +40,14 @@ complete -F _up up
 
 BASH_MINIMAL_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P)"
 
-which ruby > /dev/null && {
-    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotDirs.rb cd
-    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb mv
-    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb cp
-    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb ls
-    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb ln
-    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb vi
-}
+#which ruby > /dev/null && {
+#    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotDirs.rb cd
+#    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb mv
+#    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb cp
+#    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb ls
+#    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb ln
+#    complete -o bashdefault -o default -C $BASH_MINIMAL_DIR/tripleDotFiles.rb vi
+#}
 
 # fully navigable fwd and back history
 function cd.history.clear {
