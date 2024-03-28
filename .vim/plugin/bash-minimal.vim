@@ -62,6 +62,9 @@ set backupdir=~/.vim-tmp/backup/
 set directory=~/.vim-tmp/swap/
 set undodir=~/.vim-tmp/undo/
 
+hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+nnoremap <Leader>c :set cursorline! <CR>
+set cursorline
 
 if &diff
     " colorscheme evening
